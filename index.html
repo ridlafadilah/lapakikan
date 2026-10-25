@@ -44,7 +44,8 @@
 :root{
   color-scheme:light;
   --blue:#1888C7; --blue-l:#3c96ca; --orange:#FF6600;
-  --blue-caption:#accfe3;
+  --wave-3: rgba(66,157,209,.5); --wave-4:#3c96ca;
+  --blue-caption:#accfe3; --blue-caption-2:#7790a1; --label-footer:#ffffff;
   --ink:#0F2A3A; --muted:#51697A; --line:#E1ECF3; --white:#fff;
   --head:"Nunito","Trebuchet MS",system-ui,sans-serif;
   --body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -80,8 +81,8 @@ body{margin:0;background:var(--white);color:var(--ink);font:400 17px/1.65 var(--
 @keyframes drift{to{transform:translateX(calc(var(--p) * -1))}}
 .w1{--p:600px;--t:28s;fill:rgba(66,157,209,.14)}
 .w2{--p:400px;--t:20s;animation-direction:reverse;fill:rgba(66,157,209,.28)}
-.w3{--p:600px;--t:23s;fill:rgba(66,157,209,.5)}
-.w4{--p:800px;--t:36s;animation-direction:reverse;fill:#3c96ca}
+.w3{--p:600px;--t:23s;fill:var(--wave-3)}
+.w4{--p:800px;--t:36s;animation-direction:reverse;fill:var(--wave-4)}
 .swell{animation:swell 7s ease-in-out infinite alternate}
 @keyframes swell{to{transform:translateY(8px)}}
 
@@ -100,11 +101,11 @@ h2{font:800 clamp(28px,4vw,40px)/1.15 var(--head);letter-spacing:-.025em;margin:
 .photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 12%}
 blockquote{color:aliceblue;margin:0 0 22px;font:600 clamp(22px,3vw,31px)/1.35 var(--head);letter-spacing:-.02em;max-width:24em}
 blockquote::before{content:"";display:block;width:44px;height:4px;border-radius:2px;background:var(--orange);margin-bottom:24px}
-figcaption{color:#7790a1;font-size:16px}
+figcaption{color:var(--blue-caption-2);font-size:16px}
 figcaption div{display:block;font-weight: 500;font-size: 20px;color:var(--blue-caption)}
 
 /* Footer */
-.foot-bg{background:#373737;color:var(--white)}
+.foot-bg{background:#373737;color:var(--label-footer)}
 .foot{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:32px 24px;font-size:14px}
 .footer-logo{width:150px;height:44px;display:flex;align-items:center;justify-content:flex-start;flex:none;overflow:hidden}
 .footer-logo svg{display:block;width:150px;height:44px;overflow:visible}
@@ -140,7 +141,6 @@ figcaption div{display:block;font-weight: 500;font-size: 20px;color:var(--blue-c
     justify-self: center;
   }
 }
-
 @media (max-width:380px){
   .overview {
     background: linear-gradient(var(--blue-l) 0px, #055989 375px, #373737 675px);
@@ -149,6 +149,44 @@ figcaption div{display:block;font-weight: 500;font-size: 20px;color:var(--blue-c
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rise,.reveal{opacity:1;transform:none}
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    color-scheme:dark;
+    --ink:#EAF2F7;
+    --muted:#B4C4D0;
+    --line:#344957;
+    --tint:#1A2A35;
+    --white:#373737;
+    --blue-l:#307197;
+    --wave-3: rgb(62 105 129 / 50%);
+    --wave-4:#307197;
+    --blue-caption:#9bbfd4;
+    --blue-caption-2:#667c8a;
+    --page-bg:#373737;
+    --overview-end:#101920;
+    --footer-bg:#373737;
+    --ph-border:#416D85;
+  }
+  body{background:var(--page-bg);}
+  .hero-bg{background:var(--page-bg);}
+  .tag{background: linear-gradient(45deg, #FF6600, #a15a2a);}
+  .pill{background:#464340;border-color:var(--line);}
+  .overview{background: linear-gradient(var(--blue-l) 0px, #055989 200px, #373737 475px);color:var(--ink);}
+  .points li{background:#1A2A35;color:var(--muted);}
+  .points strong,figcaption strong{color:var(--ink);}
+  .founder{background:var(--page-bg);}
+  .ph{background:var(--tint);color:#78C5F0;}
+  .ph small{color:var(--muted);}
+  .foot-bg{background:var(--footer-bg);}
+  .btn{color:#373737;background: linear-gradient(45deg, #1888c7, #20516e);}
+  .btn:hover{background:linear-gradient(45deg, #177db8, #1c4963);}
+  .photo img {
+    filter: brightness(0.75);
+  }
+  .art img {
+    filter: brightness(0.9);
+  }
 }
 </style>
 </head>
@@ -163,11 +201,19 @@ figcaption div{display:block;font-weight: 500;font-size: 20px;color:var(--blue-c
         <p class="lead rise d3">Connecting the supply of quality fish from the source to consumers via electric carts and a cold chain system, while building partnership opportunities that expand market access for fisheries businesses.</p>
         <a class="btn rise d4" href="mailto:diego.soryandana@gmail.com">Contact us</a>
       </div>
-      <div class="art rise d3"><img
-        src="https://lapakikan.com/assets/mockup.png"
-        alt="Lapak Ikan mobile app mockup showing nearby fish sellers and fresh seafood listings"
-        width="720"
-        height="900"></div>
+      <div class="art rise d3">
+        <picture>
+          <source
+            srcset="https://lapakikan.com/assets/mockup-dark.png"
+            media="(prefers-color-scheme: dark)"
+          >
+          <img
+            src="https://lapakikan.com/assets/mockup.png"
+            alt="Lapak Ikan mobile app mockup"
+            width="720"
+            height="900"
+          >
+        </picture></div>
     </main>
   </div>
   <div class="waves" aria-hidden="true">
